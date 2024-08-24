@@ -2,7 +2,7 @@ require_relative "node"
 require_relative "custom_queue"
 
 class Tree
-  attr_accessor :root
+  # attr_reader :root
 
   def initialize(arr = [])
     @arr = arr.uniq.sort
@@ -87,6 +87,17 @@ class Tree
     return arr unless block
 
     arr.each(&block)
+  end
+
+  def height(root = @root, count = -1)
+    return count if root.nil?
+
+    count += 1
+
+    left_height = height(root.left, count)
+    right_height = height(root.right, count)
+
+    [left_height, right_height].max
   end
 
   private
