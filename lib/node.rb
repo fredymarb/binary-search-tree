@@ -18,3 +18,12 @@ class TreeNode
     @left.nil? && @right.nil?
   end
 end
+
+class QueueNode
+  attr_accessor :data, :next
+
+  def initialize(data)
+    @data = data
+    @next = nil
+  end
+end

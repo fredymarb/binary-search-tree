@@ -1,4 +1,5 @@
 require_relative "node"
+require_relative "custom_queue"
 
 class Tree
   attr_accessor :root
@@ -45,6 +46,9 @@ class Tree
     return find(data, root.right) if data > root.data
 
     nil
+  end
+
+  def level_order(root = @root)
   end
 
   private
