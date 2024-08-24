@@ -1,6 +1,8 @@
 require_relative "node"
 
 class Tree
+  attr_accessor :root
+
   def initialize(arr = [])
     @arr = arr.uniq.sort
     @root = build_tree(@arr)
@@ -18,7 +20,7 @@ class Tree
     node
   end
 
-  def pretty_print(node = @root, prefix = "", is_left = true)
+  def pretty_print(node = @root, prefix = "", is_left = true) # rubocop:disable Style/OptionalBooleanParameter
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
@@ -31,6 +33,10 @@ class Tree
     insert_node(new_node, @root)
   end
 
+  def delete(data)
+    @root = delete_node(data, @root)
+  end
+
   private
 
   def insert_node(node, root)
@@ -41,5 +47,44 @@ class Tree
     elsif node > root
       root.right.nil? ? root.right = node : insert_node(node, root.right)
     end
+  end
+
+  def delete_node(data, root)
+    return root if root.nil?
+
+    # traverse the tree to get to the node
+    # that matches the data
+    if data < root.data
+      root.left = delete_node(data, root.left)
+    elsif data > root.data
+      root.right = delete_node(data, root.right)
+    elsif data == root.data
+      # remove a leaf node
+      return root = nil if root.leaf?
+
+      # remove node with only one child
+      return root = root.right if root.left.nil?
+      return root = root.left if root.right.nil?
+
+      # remove node with two children
+      root.data = min(root.right)
+      root.right = delete_node(root.data, root.right)
+    end
+
+    root
+  end
+
+  # returns the minimum value in the tree
+  def min(root = @root)
+    return root.data if root.left.nil?
+
+    min(root.left)
+  end
+
+  # returns the maximum value in the tree
+  def max(root = @root)
+    return root.data if root.right.nil?
+
+    max(root.right)
   end
 end
