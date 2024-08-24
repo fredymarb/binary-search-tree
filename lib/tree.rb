@@ -37,6 +37,16 @@ class Tree
     @root = delete_node(data, @root)
   end
 
+  def find(data, root = @root)
+    return nil if root.nil?
+
+    return root if data == root.data
+    return find(data, root.left) if data < root.data
+    return find(data, root.right) if data > root.data
+
+    nil
+  end
+
   private
 
   def insert_node(node, root)

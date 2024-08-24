@@ -8,5 +8,5 @@ bst.insert(15)
 bst.insert(3)
 bst.pretty_print
 
-bst.delete(4)
-bst.pretty_print
+puts bst.find(6)
+# bst.pretty_print
