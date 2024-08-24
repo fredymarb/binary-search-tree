@@ -6,7 +6,7 @@ bst.insert(10)
 bst.insert(5)
 bst.insert(15)
 bst.insert(3)
-bst.pretty_print
 
-puts bst.find(6)
-# bst.pretty_print
+bst.pretty_print
+p bst.level_order
+bst.level_order { |node| puts "here: #{node}" }

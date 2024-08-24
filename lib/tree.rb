@@ -48,7 +48,21 @@ class Tree
     nil
   end
 
-  def level_order(root = @root)
+  def level_order(root = @root, level_order_arr = [], &block)
+    my_queue = MyQueue.new
+    my_queue.enqueue(root)
+
+    until my_queue.head.nil?
+      current_node = my_queue.dequeue
+      level_order_arr << current_node.data
+
+      my_queue.enqueue(current_node.left) unless current_node.left.nil?
+      my_queue.enqueue(current_node.right) unless current_node.right.nil?
+    end
+
+    return level_order_arr unless block
+
+    level_order_arr.each(&block)
   end
 
   private

@@ -9,7 +9,7 @@ class MyQueue
   end
 
   def enqueue(data)
-    new_node = QueueNode(data)
+    new_node = QueueNode.new(data)
 
     @size += 1
     return @head = new_node if @head.nil?
