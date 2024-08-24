@@ -66,27 +66,27 @@ class Tree
   end
 
   def in_order(&block)
-    @in_order_arr = []
-    in_order_logic
-    return @in_order_arr unless block
+    arr = []
+    in_order_logic(arr)
+    return arr unless block
 
-    @in_order_arr.each(&block)
+    arr.each(&block)
   end
 
   def pre_order(&block)
-    @pre_order_arr = []
-    pre_order_logic
-    return @pre_order_arr unless block
+    arr = []
+    pre_order_logic(arr)
+    return arr unless block
 
-    @pre_order_arr.each(&block)
+    arr.each(&block)
   end
 
   def post_order(&block)
-    @post_order_arr = []
-    post_order_logic
-    return @post_order_arr unless block
+    arr = []
+    post_order_logic(arr)
+    return arr unless block
 
-    @post_order_arr.each(&block)
+    arr.each(&block)
   end
 
   private
@@ -140,27 +140,27 @@ class Tree
     max(root.right)
   end
 
-  def in_order_logic(root = @root)
+  def in_order_logic(arr, root = @root)
     return if root.nil?
 
-    in_order_logic(root.left)
-    @in_order_arr << root.data
-    in_order_logic(root.right)
+    in_order_logic(arr, root.left)
+    arr << root.data
+    in_order_logic(arr, root.right)
   end
 
-  def pre_order_logic(root = @root)
+  def pre_order_logic(arr, root = @root)
     return if root.nil?
 
-    @pre_order_arr << root.data
-    pre_order_logic(root.left)
-    pre_order_logic(root.right)
+    arr << root.data
+    pre_order_logic(arr, root.left)
+    pre_order_logic(arr, root.right)
   end
 
-  def post_order_logic(root = @root)
+  def post_order_logic(arr, root = @root)
     return if root.nil?
 
-    post_order_logic(root.left)
-    post_order_logic(root.right)
-    @post_order_arr << root.data
+    post_order_logic(arr, root.left)
+    post_order_logic(arr, root.right)
+    arr << root.data
   end
 end

@@ -11,3 +11,4 @@ bst.pretty_print
 p bst.in_order
 p bst.pre_order
 p bst.post_order
+# p bst.cool_method
