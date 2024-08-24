@@ -65,6 +65,30 @@ class Tree
     level_order_arr.each(&block)
   end
 
+  def in_order(&block)
+    @in_order_arr = []
+    in_order_logic
+    return @in_order_arr unless block
+
+    @in_order_arr.each(&block)
+  end
+
+  def pre_order(&block)
+    @pre_order_arr = []
+    pre_order_logic
+    return @pre_order_arr unless block
+
+    @pre_order_arr.each(&block)
+  end
+
+  def post_order(&block)
+    @post_order_arr = []
+    post_order_logic
+    return @post_order_arr unless block
+
+    @post_order_arr.each(&block)
+  end
+
   private
 
   def insert_node(node, root)
@@ -114,5 +138,29 @@ class Tree
     return root.data if root.right.nil?
 
     max(root.right)
+  end
+
+  def in_order_logic(root = @root)
+    return if root.nil?
+
+    in_order_logic(root.left)
+    @in_order_arr << root.data
+    in_order_logic(root.right)
+  end
+
+  def pre_order_logic(root = @root)
+    return if root.nil?
+
+    @pre_order_arr << root.data
+    pre_order_logic(root.left)
+    pre_order_logic(root.right)
+  end
+
+  def post_order_logic(root = @root)
+    return if root.nil?
+
+    post_order_logic(root.left)
+    post_order_logic(root.right)
+    @post_order_arr << root.data
   end
 end

@@ -8,5 +8,6 @@ bst.insert(15)
 bst.insert(3)
 
 bst.pretty_print
-p bst.level_order
-bst.level_order { |node| puts "here: #{node}" }
+p bst.in_order
+p bst.pre_order
+p bst.post_order
