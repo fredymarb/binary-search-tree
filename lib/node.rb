@@ -1,5 +1,7 @@
 # node class for binary search tree
-class Node
+class TreeNode
+  include Comparable
+
   attr_accessor :data, :left, :right
 
   def initialize(data)
