@@ -1,6 +1,6 @@
 # node class for binary search tree
 class Node
-  attr_accessor :value, :left, :right
+  attr_accessor :data, :left, :right
 
   def initialize(data)
     @data = data
