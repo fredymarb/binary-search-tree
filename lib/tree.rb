@@ -89,15 +89,25 @@ class Tree
     arr.each(&block)
   end
 
-  def height(root = @root, count = -1)
-    return count if root.nil?
+  def height(node = @root, count = -1)
+    return count if node.nil?
 
     count += 1
 
-    left_height = height(root.left, count)
-    right_height = height(root.right, count)
+    left_height = height(node.left, count)
+    right_height = height(node.right, count)
 
     [left_height, right_height].max
+  end
+
+  def depth(node, count = 0, root_node = @root)
+    return 0 if root_node.nil?
+    return count if node == root_node
+
+    left_depth = depth(node, count + 1, root_node.left)
+    right_depth = depth(node, count + 1, root_node.right)
+
+    [left_depth, right_depth].max
   end
 
   private

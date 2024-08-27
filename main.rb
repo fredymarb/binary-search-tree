@@ -8,4 +8,5 @@ bst.insert(15)
 bst.insert(4.5)
 
 bst.pretty_print
-puts bst.height
+# puts bst.height
+puts bst.depth(bst.find(4.5))
