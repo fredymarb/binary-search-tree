@@ -110,6 +110,13 @@ class Tree
     [left_depth, right_depth].max
   end
 
+  def balanced?
+    left_height = height(@root.left)
+    right_height = height(@root.right)
+
+    (left_height - right_height).abs <= 1
+  end
+
   private
 
   def insert_node(node, root)
