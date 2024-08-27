@@ -117,6 +117,12 @@ class Tree
     (left_height - right_height).abs <= 1
   end
 
+  def rebalance
+    temp_arr = in_order
+    @arr = nil
+    @arr = build_tree(temp_arr)
+  end
+
   private
 
   def insert_node(node, root)
